@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Text-driven Visual Synthesis with Latent Diffusion Prior Demo</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style/main.css">
+    <link rel="stylesheet" href="style/glide.core.min.css">
+    <link rel="stylesheet" href="style/glide.theme.min.css">
+    <link rel="stylesheet" href="style/glide-custom.css">
+  </head>
+  <body onload="selectSource('swan'); selectAppVideo('human1'); selectComparisonVideo('duck');">
+    <div class="container" id="container">
+      <div class="page page1">
+        <h1 style="text-align: center">
+          Text-driven Visual Synthesis with Latent Diffusion Prior</h1>
+        <div class="authors">
+          <div><a href="https://tinghliao.github.io/">Ting-Hsuan Liao</a></div>
+          <div><a href="http://songweige.github.io/">Songwei Ge</a></div>
+          <div><a href="https://twizwei.github.io/">Yiran Xu</a></div>
+          <div><a href="https://yaochih.github.io/">Yao-Chih Lee</a></div>
+          <div><a href="https://badouralbahar.github.io">Badour AlBahar</a></div>
+          <div><a href="https://jbhuang0604.github.io">Jia-Bin Huang</a></div>
+        </div>
+        <br/>
+        <div class="links">
+          <a class="btn-solid-lg" href="#"><i class="fa fa-file-pdf-o"></i> Paper (arXiv)</a>
+          <a class="btn-solid-lg" href="#"><i class="fa fa-github"></i> Code (coming soon)</a>
+        </div>
+        
+        <div class="teaser">
+          <!-- <div class="row">
+            <div class="col2">
+                <p>Jacobian NeRF</p>
+            </div>
+            <div class="col2">
+              <p>Jacobian NeRF + Ours</p>
+            </div>
+          </div> -->
+          <div style="display: flex;flex-direction: row;">
+            <p id="comparison-caption" style="margin-left: 7%; margin-top: 5px; text-align: center; width: 50%">Latent NeRF</p>
+            <p id="comparison-caption-our" style="margin-right: 7%; margin-top: 5px; text-align: center; width: 50%;">Latent NeRF + Ours<mark style="background: none; color: white">.</mark></p>
+          </div>
+          <div class="glide" id="text3d-teaser">
+            <div data-glide-el="track" class="glide__track">
+              <ul class="glide__slides">
+                <li class="glide__slide">
+                  <video controls muted loop autoplay class="teaser-video-0">
+                    <source src="videos/fish.mp4" type="video/mp4"/>
+                  </video>
+                </li>
+                <li class="glide__slide">
+                  <video controls muted loop class="teaser-video-1">
+                    <source src="videos/jog.mp4" type="video/mp4"/>
+                  </video>
+                </li>
+                <li class="glide__slide">
+                  <video controls muted loop class="teaser-video-2">
+                    <source src="videos/jog.mp4" type="video/mp4"/>
+                  </video>
+                </li>
+              </ul>
+            </div>
+
+            <div class="glide__arrows" data-glide-el="controls">
+              <span class="glide__arrow glide__arrow--left" data-glide-dir="<"><img src="dist/arrow-left-circle-fill.svg"/></span>
+              <span class="glide__arrow glide__arrow--right" data-glide-dir=">"><img src="dist/arrow-right-circle-fill.svg"/></span>
+            </div>
+          </div>
+          <p class="center shift-to-above">Text-to-3D compare with <a href="https://pals.ttic.edu/p/score-jacobian-chaining">Jacobian-NeRF</a>, and <a href="https://github.com/eladrich/latent-nerf">Latent-NeRF</a>.</p>
+
+
+          <div class="glide" id="gan-teaser">
+            <div data-glide-el="track" class="glide__track">
+              <ul class="glide__slides" id="gan-teaser-sub">
+                <li class="glide__slide">
+                  <video controls muted loop autoplay class="teaser-video-gan-0">
+                    <source src="videos/adaptation/teaser-human1.mp4" type="video/mp4"/>
+                  </video>
+                </li>
+                <li class="glide__slide">
+                  <video controls muted loop class="teaser-video-gan-1">
+                    <source src="videos/adaptation/teaser-human2.mp4" type="video/mp4"/>
+                  </video>
+                </li>
+                <li class="glide__slide">
+                  <video controls muted loop class="teaser-video-gan-2">
+                    <source src="videos/adaptation/teaser-cat1.mp4" type="video/mp4"/>
+                  </video>
+                </li>
+                <li class="glide__slide">
+                  <video controls muted loop class="teaser-video-gan-3">
+                    <source src="videos/adaptation/teaser-cat2.mp4" type="video/mp4"/>
+                  </video>
+                </li>
+              </ul>
+            </div>
+
+            <div class="glide__arrows" data-glide-el="controls">
+              <span class="glide__arrow glide__arrow--left" data-glide-dir="<"><img src="dist/arrow-left-circle-fill.svg"/></span>
+              <span class="glide__arrow glide__arrow--right" data-glide-dir=">"><img src="dist/arrow-right-circle-fill.svg"/></span>
+            </div>
+            <p class="center shift-to-above">StyleGAN Adaptation.</p>
+          </div>
+
+
+          <div class="glide" id="layer-teaser">
+            <div data-glide-el="track" class="glide__track">
+              <ul class="glide__slides" id="layer-teaser-sub">
+                <li class="glide__slide">
+                  <video controls muted loop autoplay class="teaser-video-layer-0">
+                    <source src="videos/layer/teaser_horse.mp4" type="video/mp4"/>
+                  </video>
+                </li>
+                <li class="glide__slide">
+                  <video controls muted loop class="teaser-video-layer-1">
+                    <source src="videos/layer/teaser_bear.mp4" type="video/mp4"/>
+                  </video>
+                </li>
+                <li class="glide__slide">
+                  <video controls muted loop class="teaser-video-layer-2">
+                    <source src="videos/layer/teaser_bread.mp4" type="video/mp4"/>
+                  </video>
+                </li>
+                <li class="glide__slide">
+                  <video controls muted loop class="teaser-video-layer-3">
+                    <source src="videos/layer/teaser_cat.mp4" type="video/mp4"/>
+                  </video>
+                </li>
+                <li class="glide__slide">
+                  <video controls muted loop class="teaser-video-layer-4">
+                    <source src="videos/layer/teaser_swan.mp4" type="video/mp4"/>
+                  </video>
+                </li>
+              </ul>
+            </div>
+
+            <div class="glide__arrows" data-glide-el="controls">
+              <span class="glide__arrow glide__arrow--left" data-glide-dir="<"><img src="dist/arrow-left-circle-fill.svg"/></span>
+              <span class="glide__arrow glide__arrow--right" data-glide-dir=">"><img src="dist/arrow-right-circle-fill.svg"/></span>
+            </div>
+          </div>
+          <p class="center shift-to-above">Layer image editing.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container" id="comparison-video">
+      <h2>Application 1: Text-to-3D</h2>
+        <div style="display: block;" id="comparison-video-div">
+          <video id="comparison-player1"  style="width: 49%" autoplay muted onended="">
+            <source id="comparison-src1" src="videos/text3D/duck.mp4">
+          </video>
+          <video id="comparison-player2"  style="width: 49%" autoplay muted onended="loadComparison()">
+            <source id="comparison-src2" src="videos/text3D/duck.mp4">
+          </video>
+        </div>
+        <div style="display: flex;flex-direction: row;">
+          <p id="comparison-caption" style="margin-top: 5px; text-align: center; width: 50%">Jacobian NeRF <br> [Wang et al. 2022]</p>
+          <p style="margin-top: 5px; text-align: center; width: 50%;">Ours<br/><mark style="background: none; color: white">.</mark></p>
+        </div>
+        <p><b>Example</b></p>
+        <div class="btn-group btn-group-comp-video">
+          <button class='btn-comp-video'  onclick="selectComparisonVideo('duck')">duck</button>
+          <!-- <button class='btn-comp-video'  onclick="selectComparisonVideo('duck')">duck</button>
+          <button class='btn-comp-video' onclick="selectComparisonVideo('duck')">duck</button>
+          <button class='btn-comp-video'  onclick="selectComparisonVideo('duck')">duck</button> -->
+        </div>
+        <br/><br/>
+      </div>
+    </div>
+
+    <div class="container">
+      <h2>Application 2: StyleGAN Adaptation</h2>
+      <!-- <p>
+        Our proposed method can also be applied to image generator adaptation. We conduct experiments on StyleGAN2 with our feature matching loss. To
+        demonstrate the effectiveness of our method, we compare our approach with two other baselines, StyleGANFusion and StyleGAN-NADA. 
+      </p> -->
+      <!-- <img src="figures/cat.png" style="width: 100%"> -->
+      <div style="display: block;" id="application-div">
+        <video id="app-player" autoplay muted onended="loadApp(true)">
+          <source id="app-src" src="">
+        </video>
+      </div>
+      <div style="display: flex;flex-direction: row;">
+        <p style="margin-top: -3px; text-align: center; width: 25%">Source</p>
+        <p style="margin-top: -3px; text-align: center; width: 25%;">StyleGAN-NADA <br> [Gal et al. 2022]</p>
+        <p style="margin-top: -3px; text-align: center; width: 25%;">StyleGANFusion <br>[Song et al. 2022] </p>
+        <p style="margin-top: -3px; text-align: center; width: 25%;">Ours</p>
+      </div>
+      <p><b>Example</b></p>
+      <div class="btn-group btn-group-app">
+        <button class='btn-app-video' onclick="selectAppVideo('human1')">Human Face 1</button>
+        <button class='btn-app-video' onclick="selectAppVideo('human2')">Human Face 2</button>
+        <button class='btn-app-video'  onclick="selectAppVideo('cat1')">Cat 1</button>
+        <button class='btn-app-video'  onclick="selectAppVideo('cat2')">Cat 2</button>
+        <button class='btn-app-video'  onclick="selectAppVideo('cat3')">Cat 3</button>
+        <!-- &#8594 -->
+      </div>
+      <br/>
+    </div>
+
+    <div class="container">
+      <h2>Application 3: Layered Editing</h2>
+      <!-- <p>
+        We demonstrate the application of our diffusion prior to the image editing task. Unlike existing diffusion-based editors, our method manipulates images using test-time optimization with the proposed diffusion
+        guidance. The results reveal that our method produces more detailed results than the Dreamfusion-guided baseline and the CLIP-guided method, Text2LIVE. 
+      </p> -->
+        <div class="cocoen" style="width: 100%;">
+          <img id="image-player1"  src="figures/swan/source.jpg" alt="" />
+          <img id="image-player2"  src="figures/swan/text2live.png" alt="" />
+        </div>
+        <p style="margin-top: 5px; text-align: center;">Slide the bar to compare input (left) and output (right)</p>
+        <p><b>Source Image</b></p>
+        <div class="btn-group">
+          <button class='btn-img' style="width:23%" onclick="selectSource('swan')">Swan</button>
+          <button class='btn-img' style="width:23%" onclick="selectSource('horse')">Horse</button>
+          <button class='btn-img' style="width:23%" onclick="selectSource('cat')">Cat</button>
+          <button class='btn-img' style="width:23%" onclick="selectSource('burger')">Burger</button>
+        </div>
+        <p><b>Method</b></p>
+        <div class="btn-group">
+            <button class='btn-mth' style="width:23%" onclick="selectMethod(1)">Text2LIVE</button>
+            <button class='btn-mth' style="width:23%" onclick="selectMethod(2)">Ours-base</button>
+            <button class='btn-mth' style="width:23%" onclick="selectMethod(3)">Ours-FM</button>
+        </div>
+      </div>
+    </div>
+
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.js"
+      integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+      crossorigin="anonymous"></script>
+    <script src="js/interactive_demo.js"></script>
+    <script src="dist/cocoen.js"></script>
+    <script src="dist/glide.min.js"></script>
+    <script>
+      Cocoen.parse(document.body);
+    </script>
+    
+    <script>
+        glide = new Glide('#text3d-teaser', {
+          type: "carousel",
+          perView: 1.27,
+          focusAt: "center",
+          autoplay: 5500,
+          hoverpause: true
+        }).mount();
+        let video_num = 3;
+        glide.on('run', () => {
+          var index = glide.index;
+          for(var i = 0; i < video_num; i++) {
+            if(i == index) {
+              var active_videos = document.getElementsByClassName('teaser-video-' + i);
+              for(var j = 0; j < active_videos.length; j++) {
+                var video_ele = active_videos[j];
+                var isPlaying = video_ele.currentTime > 0 && !video_ele.paused && !video_ele.ended 
+                  && video_ele.readyState > video_ele.HAVE_CURRENT_DATA;
+
+                if (!isPlaying) {
+                  video_ele.play();
+                  changecaption(j%2*2);
+                }
+                video_ele.load();
+                video_ele.currentTime = 0;
+                video_ele.play();
+              }
+            } else {
+              var inactive_videos = document.getElementsByClassName('teaser-video-' + i);
+              for(var j = 0; j < inactive_videos.length; j++) {
+                inactive_videos[j].pause(); 
+              }
+            }
+          }
+        });
+        glide_layer = new Glide('#layer-teaser', {
+          type: "carousel",
+          perView: 1.27,
+          focusAt: "center",
+          autoplay: 5500,
+          hoverpause: true
+        }).mount();
+        let video_num_layer = 5;
+        glide_layer.on('run', () => {
+          var index = glide_layer.index;
+          for(var i = 0; i < video_num_layer; i++) {
+            if(i == index) {
+              var active_videos_layer = document.getElementsByClassName('teaser-video-layer-' + i);
+              for(var j = 0; j < active_videos_layer.length; j++) {
+                var video_ele = active_videos_layer[j];
+                var isPlaying = video_ele.currentTime > 0 && !video_ele.paused && !video_ele.ended 
+                  && video_ele.readyState > video_ele.HAVE_CURRENT_DATA;
+
+                if (!isPlaying) {
+                  video_ele.play();
+                }
+                video_ele.load();
+                video_ele.currentTime = 0;
+                video_ele.play();
+              }
+            } else {
+              var inactive_videos_layer = document.getElementsByClassName('teaser-video-layer-' + i);
+              for(var j = 0; j < inactive_videos_layer.length; j++) {
+                inactive_videos_layer[j].pause(); 
+              }
+            }
+          }
+        });
+        glide_gan = new Glide('#gan-teaser', {
+          type: "carousel",
+          perView: 1.27,
+          focusAt: "center",
+          autoplay: 5500,
+          hoverpause: true
+        }).mount();
+        let video_num_gan = 4;
+        glide_gan.on('run', () => {
+          var index = glide_gan.index;
+          for(var i = 0; i < video_num_gan; i++) {
+            if(i == index) {
+              var active_videos_gan = document.getElementsByClassName('teaser-video-gan-' + i);
+              for(var j = 0; j < active_videos_gan.length; j++) {
+                var video_ele = active_videos_gan[j];
+                var isPlaying = video_ele.currentTime > 0 && !video_ele.paused && !video_ele.ended 
+                  && video_ele.readyState > video_ele.HAVE_CURRENT_DATA;
+
+                if (!isPlaying) {
+                  video_ele.play();
+                }
+                video_ele.load();
+                video_ele.currentTime = 0;
+                video_ele.play();
+              }
+            } else {
+              var inactive_videos_gan = document.getElementsByClassName('teaser-video-gan-' + i);
+              for(var j = 0; j < inactive_videos_gan.length; j++) {
+                inactive_videos_gan[j].pause(); 
+              }
+            }
+          }
+        });
+    </script>
+  <div class="container">
+    <h2>Abstract</h2>
+    <p style="text-align: justify;">There has been tremendous progress in large-scale text-to-image synthesis driven by 
+      diffusion models enabling versatile downstream applications such as 3D object synthesis from texts, image editing 
+      and generation. We present a generic approach using latent diffusion models as powerful image priors for various 
+      visual synthesis tasks. Existing methods that utilize such priors fail to use these models' full capabilities. 
+      To improve this, our core ideas are 
+      <ul>
+        <li>a feature matching Loss between features from different layers of the decoder 
+          to provide detailed guidance</li>
+        <li>a KL divergence loss to regularize the predicted latent features and stabilize the 
+          training.</li>
+      </ul>
+      We demonstrate the efficacy of our approach on three different applications, text-to-3D, StyleGAN adaptation, 
+      and layered image editing. Extensive results show our method compares favorably against baselines.</p>
+    <h2 style="margin-top: 40px;">Overview</h2>
+    <img src="figures/overview.jpg" style="width: 100%">
+    <p style="text-align: justify;">Our method guides the generation and editing given a text prompt. We obtain the latent code from a differentiable
+      renderer under different applications, including the generator form Text2LIVE [Bar-Tal et al. 2022], StyleGAN-based generator, or a NeRF model. 
+      This latent code 𝑣 is perturbed following the latent diffusion model’s scheduler at arandom timestep 𝑡, such that 𝐹<small>𝑡</small>: z<small>𝑡</small> = 𝛼<small>𝑡</small>𝑣 + 𝜎<small>𝑡</small>𝜖. This perturbed 
+      latent code z<small>𝑡</small> is then passed to the UNet to generate the predicted noise 𝜖ˆ. We then use the predicted noise 𝜖ˆ to derive the latent score distillation 
+      gradient. To derive the feature matching gradient, we input the latent code 𝑣 and noised latent code 𝑣 + (𝜖ˆ − 𝜖) into the decoder 𝐺<small>𝜙<small>𝑑𝑒𝑐</small></small>(·). We
+      compute the difference between the multi-level features from three different layers of the decoder to compute the feature matching loss. 
+      Finally, both the latent score distillation and multi-level feature matching gradients are backpropagated to the differentiable renderer.
+    </p>
+  </div>
+  <div class="container">
+  <h2>BibTeX</h2>
+  <pre><code>
+    @article{liao2023textsyndiffusionprior,
+      title   = {Text-driven Visual Synthesis with Latent Diffusion Prior},
+      author  = {Liao, Ting-Hsuan and Ge Songwei and Xu Yiran and Lee, Yao-Chih and AlBahar Badour and Huang, Jia-Bin},
+      journal = {arXiv preprint arXiv:},
+      year    = {2023}
+    }    
+  }</code></pre>
+  
+  <h2>Acknowledgements</h2>
+  <p>We thank Jacobian NeRF, Latent NeRF, Text2Live and StyleGANFusion authors.</p>
+  </div>
+  </body>
+</html>
