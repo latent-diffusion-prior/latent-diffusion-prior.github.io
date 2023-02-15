@@ -360,7 +360,7 @@
       We demonstrate the efficacy of our approach on three different applications, text-to-3D, StyleGAN adaptation, 
       and layered image editing. Extensive results show our method compares favorably against baselines.</p>
     <h2 style="margin-top: 40px;">Overview</h2>
-    <img src="figures/overview.jpg" style="width: 100%">
+    <img src="figures/Overview.jpg" style="width: 100%">
     <p style="text-align: justify;">Our method guides the generation and editing given a text prompt. We obtain the latent code from a differentiable
       renderer under different applications, including the generator form Text2LIVE [Bar-Tal et al. 2022], StyleGAN-based generator, or a NeRF model. 
       This latent code 𝑣 is perturbed following the latent diffusion model’s scheduler at arandom timestep 𝑡, such that 𝐹<small>𝑡</small>: z<small>𝑡</small> = 𝛼<small>𝑡</small>𝑣 + 𝜎<small>𝑡</small>𝜖. This perturbed 
