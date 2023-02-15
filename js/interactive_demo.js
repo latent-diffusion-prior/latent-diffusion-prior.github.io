@@ -123,7 +123,7 @@ function showSelected() {
     for(var i = 0; i < app_btns.length; i++) {
         set_inactive(app_btns[i]);
     }
-    selected_index = ['human1', 'human2', 'cat1', 'cat2'].indexOf(selected_app_video);
+    selected_index = ['human1', 'human2', 'cat1', 'cat2', 'cat3'].indexOf(selected_app_video);
     set_active(app_btns[selected_index]);
 }
 
