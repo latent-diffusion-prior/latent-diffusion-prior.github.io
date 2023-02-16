@@ -37,9 +37,8 @@ let text_prompt = {
         "A high quality photo of a large blue bird, highly detailed",
         'An inflatable raft that has its top open and a person sitting in it',
         "A high quality photo of an ice cream sundae.",
-        "A red fire hydrant spraying water",
-        "a lego man"
-        
+        "A lego man.",
+        "A red fire hydrant spraying water.",
     ]
 };
 
@@ -179,12 +178,14 @@ function showSelected() {
 
 /* Application 1 */
 
-var selected_compare_video = 'duck';
+var selected_compare_video = 'skate';
 var comp1_path = '';
 var comp2_path = '';
 
 function selectComparisonVideo(video) {
     selected_compare_video = video;
+    selected_index = ['skate', 'bird', 'boat', 'ice', 'lego', 'water'].indexOf(video);
+    change_text_promt('com-text', selected_index)
     update_comparison_source();
     showSelected();
 }
