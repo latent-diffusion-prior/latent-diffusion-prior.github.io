@@ -226,7 +226,7 @@
         <p><b>Source Image</b></p>
         <div class="btn-group">
           <button class='btn-img' style="width:23%" onclick="selectSource('swan')">Swan &#8594 White Swan</button>
-          <button class='btn-img' style="width:23%" onclick="selectSource('horse')">Horse &#8594 Golden Horse</button>
+          <button class='btn-img' style="width:23%" onclick="selectSource('horse')">Horse &#8594 Zebra</button>
           <button class='btn-img' style="width:23%" onclick="selectSource('cat')">Cat &#8594 Tiger</button>
           <button class='btn-img' style="width:23%" onclick="selectSource('burger')">Bread &#8594 Sub Sandwich</button>
         </div>
@@ -260,8 +260,10 @@
           hoverpause: true
         }).mount();
         // let video_num = 4;
-        // glide.on('run', () => {
-        //   var index = glide.index;
+        glide.on('run', () => {
+          var index = glide.index;
+          changecaption(index%2*2);
+          change_text_promt('teaser-text', index)
         //   for(var i = 0; i < video_num; i++) {
         //     if(i == index) {
         //       var active_videos = document.getElementsByClassName('teaser-video-' + i);
@@ -286,7 +288,7 @@
         //       }
         //     }
         //   }
-        // });
+        });
         glide_layer = new Glide('#layer-teaser', {
           type: "carousel",
           perView: 1.27,
@@ -294,6 +296,10 @@
           autoplay: 5500,
           hoverpause: true
         }).mount();
+        glide_layer.on('run', () => {
+          var index = glide_layer.index;
+          change_text_promt('teaser-layer', index)
+        });
         // let video_num_layer = 5;
         // glide_layer.on('run', () => {
         //   var index = glide_layer.index;
@@ -329,6 +335,10 @@
           autoplay: 5500,
           hoverpause: true
         }).mount();
+        glide_gan.on('run', () => {
+          var index = glide_gan.index;
+          change_text_promt('gan-teaser', index)
+        });
         // let video_num_gan = 4;
         // glide_gan.on('run', () => {
         //   var index = glide_gan.index;
