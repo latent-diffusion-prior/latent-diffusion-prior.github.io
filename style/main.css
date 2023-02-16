@@ -179,9 +179,16 @@ img {
 .center {
   text-align: center;
 }
+.start {
+  text-align: start;
+}
 
 .shift-to-above {
   margin-top: 0.75em;
   margin-bottom: 2em;
   font-style: italic;
+}
+
+.prompt{
+  overflow: visible;
 }

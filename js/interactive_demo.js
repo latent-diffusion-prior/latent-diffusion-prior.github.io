@@ -5,6 +5,46 @@
 //     var h = document.getElementById('text3d-teaser').style.height; /* change this */
 //     document.getElementById('layer-teaser').style.height = h*1.2;
 // }
+let text_prompt = {
+    'teaser_jog' : 'A high quality photo of a jug made of blue and white porcelain',
+    'teaser_fish': 'A kio fish.',
+    'teaser-gan':[
+        "A very beautiful anime girl, full body, long braided curly silver hair, sky blue eyes, full round face, short smile, casual clothes, ice snowy lake setting, cinematic lightning, medium shot, mid-shot, highly detailed, trending on Artstation, Unreal Engine 4k, cinematic wallpaper by Stanley Artgerm Lau, WLOP, Rossdraws, James Jean, Andrei Riabovitchev, Marc Simonetti, and Sakimichan",
+        "photo of a face [SEP] A realistic detailed portrait, single face, science fiction, artstation, volumetric lighting, octane render",
+        "photo of a fox",
+        "Beautiful cute cat, concept art trending on artstation, volumetric lighting, 8k, octane render, studio lighting",
+    ],
+    'teaser-layer': [
+        "'golden horse','long-mane horse','zebra'",
+        'polar bear',
+        'sub sandwich',
+        "tiger",
+        "white swan",
+    ],
+
+    "human1": "photo of a face [SEP] A realistic detailed portrait, single face, science fiction, artstation, volumetric lighting, octane render",
+    "human2": "3d human face, closeup cute and adorable, cute big circular reflective eyes, Pixar render, unreal engine cinematic smooth, intricate detail, cinematic",
+    "cat1": "3d cute cat, closeup cute and adorable, cute big circular reflective eyes, long fuzzy fur, Pixar render, unreal engine cinematic smooth, intricate detail, cinematic",
+    "cat2": "photo of a fox",
+    "cat3": "photo of a lion",
+    // "swan": "white swan",
+    // "horse": "golden horse",
+    // "cat": "tiger",
+    // "burger": "",
+};
+
+function change_text_promt(id, idx) {
+    if (id == "gan-teaser"){
+        var width = document.getElementById('container').clientWidth;
+        document.getElementById('teaser-gan').style.height = '' + (width / 768 * 432/5) + 'px';
+        document.getElementById('teaser-gan').innerHTML = '<b>Text prompt:</b> '+text_prompt['teaser-gan'][idx];
+    } else{
+        document.getElementById(id).innerHTML = '<b>Text prompt:</b> '+text_prompt[id][idx];
+    }
+    
+    // document.getElementById('comparison-caption-our').innerHTML = method_names[mathod+1];
+}
+
 function changecaption(mathod) {
     document.getElementById('comparison-caption').innerHTML = method_names[mathod];
     document.getElementById('comparison-caption-our').innerHTML = method_names[mathod+1];

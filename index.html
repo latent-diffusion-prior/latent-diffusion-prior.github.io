@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="style/glide.theme.min.css">
     <link rel="stylesheet" href="style/glide-custom.css">
   </head>
-  <body onload="selectSource('swan'); selectAppVideo('human1'); selectComparisonVideo('duck');">
+  <body onload="selectSource('swan'); selectAppVideo('human1'); selectComparisonVideo('duck'); change_text_promt('gan-teaser', 0)">
     <div class="container" id="container">
       <div class="page page1">
         <h1 style="text-align: center">
@@ -25,53 +25,12 @@
           <div><a href="https://badouralbahar.github.io">Badour AlBahar</a></div>
           <div><a href="https://jbhuang0604.github.io">Jia-Bin Huang</a></div>
         </div>
+        <p style="text-align: center">University of Maryland, College Park</p>
         <br/>
         <div class="links">
           <a class="btn-solid-lg" href="#"><i class="fa fa-file-pdf-o"></i> Paper (arXiv)</a>
           <a class="btn-solid-lg" href="#"><i class="fa fa-github"></i> Code (coming soon)</a>
         </div>
-        
-        <div class="teaser">
-          <!-- <div class="row">
-            <div class="col2">
-                <p>Jacobian NeRF</p>
-            </div>
-            <div class="col2">
-              <p>Jacobian NeRF + Ours</p>
-            </div>
-          </div> -->
-          <div style="display: flex;flex-direction: row;">
-            <p id="comparison-caption" style="margin-left: 7%; margin-top: 5px; text-align: center; width: 50%">Latent NeRF</p>
-            <p id="comparison-caption-our" style="margin-right: 7%; margin-top: 5px; text-align: center; width: 50%;">Latent NeRF + Ours<mark style="background: none; color: white">.</mark></p>
-          </div>
-          <div class="glide" id="text3d-teaser">
-            <div data-glide-el="track" class="glide__track">
-              <ul class="glide__slides">
-                <li class="glide__slide">
-                  <video controls muted loop autoplay class="teaser-video-0">
-                    <source src="videos/fish.mp4" type="video/mp4"/>
-                  </video>
-                </li>
-                <li class="glide__slide">
-                  <video controls muted loop class="teaser-video-1">
-                    <source src="videos/jog.mp4" type="video/mp4"/>
-                  </video>
-                </li>
-                <li class="glide__slide">
-                  <video controls muted loop class="teaser-video-2">
-                    <source src="videos/jog.mp4" type="video/mp4"/>
-                  </video>
-                </li>
-              </ul>
-            </div>
-
-            <div class="glide__arrows" data-glide-el="controls">
-              <span class="glide__arrow glide__arrow--left" data-glide-dir="<"><img src="dist/arrow-left-circle-fill.svg"/></span>
-              <span class="glide__arrow glide__arrow--right" data-glide-dir=">"><img src="dist/arrow-right-circle-fill.svg"/></span>
-            </div>
-          </div>
-          <p class="center shift-to-above">Text-to-3D compare with <a href="https://pals.ttic.edu/p/score-jacobian-chaining">Jacobian-NeRF</a>, and <a href="https://github.com/eladrich/latent-nerf">Latent-NeRF</a>.</p>
-
 
           <div class="glide" id="gan-teaser">
             <div data-glide-el="track" class="glide__track">
@@ -103,8 +62,44 @@
               <span class="glide__arrow glide__arrow--left" data-glide-dir="<"><img src="dist/arrow-left-circle-fill.svg"/></span>
               <span class="glide__arrow glide__arrow--right" data-glide-dir=">"><img src="dist/arrow-right-circle-fill.svg"/></span>
             </div>
+            <p class="start prompt" id="teaser-gan"><b>Text prompt:</b> A very beautiful anime girl, full body, long braided curly silver hair, sky blue eyes, full round face, short smile, casual clothes, ice snowy lake setting, cinematic lightning, medium shot, mid-shot, highly detailed, trending on Artstation, Unreal Engine 4k, cinematic wallpaper by Stanley Artgerm Lau, WLOP, Rossdraws, James Jean, Andrei Riabovitchev, Marc Simonetti, and Sakimichan.</p>
             <p class="center shift-to-above">StyleGAN Adaptation.</p>
           </div>
+
+          <div class="teaser">
+            <div style="display: flex;flex-direction: row;">
+              <p id="comparison-caption" style="margin-left: 7%; margin-top: 5px; text-align: center; width: 50%">Latent NeRF</p>
+              <p id="comparison-caption-our" style="margin-right: 7%; margin-top: 5px; text-align: center; width: 50%;">Latent NeRF + Ours<mark style="background: none; color: white">.</mark></p>
+            </div>
+            <div class="glide" id="text3d-teaser">
+              <div data-glide-el="track" class="glide__track">
+                <ul class="glide__slides">
+                  <li class="glide__slide">
+                    <video controls muted loop autoplay class="teaser-video-0">
+                      <source src="videos/jog.mp4" type="video/mp4"/>
+                    </video>
+                  </li>
+                  <li class="glide__slide">
+                    <video controls muted loop class="teaser-video-1">
+                      <source src="videos/fish.mp4" type="video/mp4"/>
+                    </video>
+                  </li>
+                  <li class="glide__slide">
+                    <video controls muted loop class="teaser-video-2">
+                      <source src="videos/jog.mp4" type="video/mp4"/>
+                    </video>
+                  </li>
+                </ul>
+              </div>
+  
+              <div class="glide__arrows" data-glide-el="controls">
+                <span class="glide__arrow glide__arrow--left" data-glide-dir="<"><img src="dist/arrow-left-circle-fill.svg"/></span>
+                <span class="glide__arrow glide__arrow--right" data-glide-dir=">"><img src="dist/arrow-right-circle-fill.svg"/></span>
+              </div>
+            </div>
+            <p class="start prompt" id="teaser-text"><b>Text prompt:</b> A high quality photo of a jug made of blue and white porcelain.</p>
+            <p class="center shift-to-above">Text-to-3D compare with <a href="https://pals.ttic.edu/p/score-jacobian-chaining">Jacobian-NeRF</a>, and <a href="https://github.com/eladrich/latent-nerf">Latent-NeRF</a>.</p>
+  
 
 
           <div class="glide" id="layer-teaser">
@@ -143,13 +138,47 @@
               <span class="glide__arrow glide__arrow--right" data-glide-dir=">"><img src="dist/arrow-right-circle-fill.svg"/></span>
             </div>
           </div>
+          <p class="start prompt" id="teaser-layer"><b>Text prompt:</b> Golden Horse.</p>
           <p class="center shift-to-above">Layer image editing.</p>
         </div>
       </div>
     </div>
 
+    <div class="container">
+      <h2>Comparison: StyleGAN Adaptation</h2>
+      <!-- <p>
+        Our proposed method can also be applied to image generator adaptation. We conduct experiments on StyleGAN2 with our feature matching loss. To
+        demonstrate the effectiveness of our method, we compare our approach with two other baselines, StyleGANFusion and StyleGAN-NADA. 
+      </p> -->
+      <!-- <img src="figures/cat.png" style="width: 100%"> -->
+      <div style="display: block;" id="application-div">
+        <video id="app-player" autoplay muted onended="loadApp(true)">
+          <source id="app-src" src="">
+        </video>
+      </div>
+      <div style="display: flex;flex-direction: row;">
+        <p style="margin-top: -3px; text-align: center; width: 25%">Source</p>
+        <p style="margin-top: -3px; text-align: center; width: 25%;">StyleGAN-NADA <br> [Gal et al. 2022]</p>
+        <p style="margin-top: -3px; text-align: center; width: 25%;">StyleGANFusion <br>[Song et al. 2022] </p>
+        <p style="margin-top: -3px; text-align: center; width: 25%;">Ours</p>
+      </div>
+      <p class="start prompt" id="com-gan"><b>Text prompt:</b> Photo of a face [SEP] A realistic detailed portrait, single face, science fiction, artstation, volumetric lighting, octane render.</p>
+      <p><b>Example</b></p>
+      <div class="btn-group btn-group-app">
+        <button class='btn-app-video' onclick="selectAppVideo('human1')">Human Face 1</button>
+        <button class='btn-app-video' onclick="selectAppVideo('human2')">Human Face 2</button>
+        <button class='btn-app-video'  onclick="selectAppVideo('cat1')">Cat 1</button>
+        <button class='btn-app-video'  onclick="selectAppVideo('cat2')">Cat 2</button>
+        <button class='btn-app-video'  onclick="selectAppVideo('cat3')">Cat 3</button>
+        <!-- &#8594 -->
+      </div>
+      <br/>
+      <img src="figures/compare.png" style="display: block; width: 90%; margin: 0 auto;"/>
+      <p class="center shift-to-above">Compare our method with StyleGAN-NADA [Gal et al. 2022] and StyleGANFusion [Song et al. 2022] on FID (left, the lower the better) and LPIPS/CLIP (right, the higher the better).</p>
+    </div>
+
     <div class="container" id="comparison-video">
-      <h2>Application 1: Text-to-3D</h2>
+      <h2>Comparison: Text-to-3D</h2>
         <div style="display: block;" id="comparison-video-div">
           <video id="comparison-player1"  style="width: 49%" autoplay muted onended="">
             <source id="comparison-src1" src="videos/text3D/duck.mp4">
@@ -174,37 +203,7 @@
     </div>
 
     <div class="container">
-      <h2>Application 2: StyleGAN Adaptation</h2>
-      <!-- <p>
-        Our proposed method can also be applied to image generator adaptation. We conduct experiments on StyleGAN2 with our feature matching loss. To
-        demonstrate the effectiveness of our method, we compare our approach with two other baselines, StyleGANFusion and StyleGAN-NADA. 
-      </p> -->
-      <!-- <img src="figures/cat.png" style="width: 100%"> -->
-      <div style="display: block;" id="application-div">
-        <video id="app-player" autoplay muted onended="loadApp(true)">
-          <source id="app-src" src="">
-        </video>
-      </div>
-      <div style="display: flex;flex-direction: row;">
-        <p style="margin-top: -3px; text-align: center; width: 25%">Source</p>
-        <p style="margin-top: -3px; text-align: center; width: 25%;">StyleGAN-NADA <br> [Gal et al. 2022]</p>
-        <p style="margin-top: -3px; text-align: center; width: 25%;">StyleGANFusion <br>[Song et al. 2022] </p>
-        <p style="margin-top: -3px; text-align: center; width: 25%;">Ours</p>
-      </div>
-      <p><b>Example</b></p>
-      <div class="btn-group btn-group-app">
-        <button class='btn-app-video' onclick="selectAppVideo('human1')">Human Face 1</button>
-        <button class='btn-app-video' onclick="selectAppVideo('human2')">Human Face 2</button>
-        <button class='btn-app-video'  onclick="selectAppVideo('cat1')">Cat 1</button>
-        <button class='btn-app-video'  onclick="selectAppVideo('cat2')">Cat 2</button>
-        <button class='btn-app-video'  onclick="selectAppVideo('cat3')">Cat 3</button>
-        <!-- &#8594 -->
-      </div>
-      <br/>
-    </div>
-
-    <div class="container">
-      <h2>Application 3: Layered Editing</h2>
+      <h2>Comparison: Layered Editing</h2>
       <!-- <p>
         We demonstrate the application of our diffusion prior to the image editing task. Unlike existing diffusion-based editors, our method manipulates images using test-time optimization with the proposed diffusion
         guidance. The results reveal that our method produces more detailed results than the Dreamfusion-guided baseline and the CLIP-guided method, Text2LIVE. 
@@ -216,10 +215,10 @@
         <p style="margin-top: 5px; text-align: center;">Slide the bar to compare input (left) and output (right)</p>
         <p><b>Source Image</b></p>
         <div class="btn-group">
-          <button class='btn-img' style="width:23%" onclick="selectSource('swan')">Swan</button>
-          <button class='btn-img' style="width:23%" onclick="selectSource('horse')">Horse</button>
-          <button class='btn-img' style="width:23%" onclick="selectSource('cat')">Cat</button>
-          <button class='btn-img' style="width:23%" onclick="selectSource('burger')">Burger</button>
+          <button class='btn-img' style="width:23%" onclick="selectSource('swan')">Swan &#8594 White Swan</button>
+          <button class='btn-img' style="width:23%" onclick="selectSource('horse')">Horse &#8594 Golden Horse</button>
+          <button class='btn-img' style="width:23%" onclick="selectSource('cat')">Cat &#8594 Tiger</button>
+          <button class='btn-img' style="width:23%" onclick="selectSource('burger')">Bread &#8594 Sub Sandwich</button>
         </div>
         <p><b>Method</b></p>
         <div class="btn-group">
@@ -297,6 +296,7 @@
 
                 if (!isPlaying) {
                   video_ele.play();
+                  change_text_promt('teaser-layer', i)
                 }
                 video_ele.load();
                 video_ele.currentTime = 0;
@@ -330,6 +330,7 @@
 
                 if (!isPlaying) {
                   video_ele.play();
+                  change_text_promt('gan-teaser', i);
                 }
                 video_ele.load();
                 video_ele.currentTime = 0;
