@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="style/glide.theme.min.css">
     <link rel="stylesheet" href="style/glide-custom.css">
   </head>
-  <body onload="selectSource('swan'); selectAppVideo('human1'); selectComparisonVideo('skate'); change_text_promt('gan-teaser', 0)">
+  <body onload="selectSource('swan'); selectAppVideo('human1'); selectComparisonVideo('parrot'); change_text_promt('gan-teaser', 0)">
     <div class="container" id="container">
       <div class="page page1">
         <h1 style="text-align: center">
@@ -199,12 +199,14 @@
         <p class="start prompt" id="com-text"><b>Text prompt:</b> duck</p>
         <p><b>Example</b></p>
         <div class="btn-group btn-group-comp-video">
+          <button class='btn-comp-video'  onclick="selectComparisonVideo('parrot')">parrot</button>
           <button class='btn-comp-video'  onclick="selectComparisonVideo('skate')">skate</button>
           <button class='btn-comp-video'  onclick="selectComparisonVideo('bird')">bird</button>
           <button class='btn-comp-video' onclick="selectComparisonVideo('boat')">boat</button>
-          <button class='btn-comp-video'  onclick="selectComparisonVideo('ice')">ice</button>
+          <button class='btn-comp-video'  onclick="selectComparisonVideo('ice')">ice cream</button>
           <button class='btn-comp-video'  onclick="selectComparisonVideo('lego')">lego</button>
           <button class='btn-comp-video'  onclick="selectComparisonVideo('water')">fire hydrant</button>
+          <button class='btn-comp-video'  onclick="selectComparisonVideo('wine')">red wine</button>
         </div>
         <br/><br/>
       </div>
@@ -218,7 +220,7 @@
       </p> -->
         <div class="cocoen" style="width: 100%;">
           <img id="image-player1"  src="figures/swan/source.jpg" alt="" />
-          <img id="image-player2"  src="figures/swan/text2live.png" alt="" />
+          <img id="image-player2"  src="figures/swan/FM.png" alt="" />
         </div>
         <p style="margin-top: 5px; text-align: center;">Slide the bar to compare input (left) and output (right)</p>
         <p><b>Source Image</b></p>

@@ -33,12 +33,14 @@ let text_prompt = {
         "photo of a lion",
     ],
     'com-text':[
+        "A high quality photo of a colorfol parrot, highly detailed.",
         'A stuffed animal that is frowning is on a skateboard.',
         "A high quality photo of a large blue bird, highly detailed",
         'An inflatable raft that has its top open and a person sitting in it',
         "A high quality photo of an ice cream sundae.",
         "A lego man.",
         "A red fire hydrant spraying water.",
+        "A high quality photo of a glass of wine.",
     ]
 };
 
@@ -83,7 +85,7 @@ let method_names = [
 ];
 
 var selected_source = 'swan';
-var selected_method = 'text2live';
+var selected_method = 'FM';
 var img1_path = '';
 var img2_path = '';
 
@@ -115,7 +117,7 @@ function loadImage(is_end) {
 
 function selectSource(image) {
     selected_source = image;
-    selected_method = method_options[1];
+    selected_method = method_options[3];
     showSelected();
     update_image_source();
 }
@@ -164,7 +166,7 @@ function showSelected() {
     for(var i = 0; i < comp_video_btns.length; i++) {
         set_inactive(comp_video_btns[i]);
     }
-    selected_index = ['skate', 'bird', 'boat', 'ice', 'lego', 'water'].indexOf(selected_compare_video);
+    selected_index = ['parrot', 'skate', 'bird', 'boat', 'ice', 'lego', 'water', 'wine'].indexOf(selected_compare_video);
     set_active(comp_video_btns[selected_index]);
 
 
@@ -184,7 +186,7 @@ var comp2_path = '';
 
 function selectComparisonVideo(video) {
     selected_compare_video = video;
-    selected_index = ['skate', 'bird', 'boat', 'ice', 'lego', 'water'].indexOf(video);
+    selected_index = ['parrot', 'skate', 'bird', 'boat', 'ice', 'lego', 'water', 'wine'].indexOf(video);
     change_text_promt('com-text', selected_index)
     update_comparison_source();
     showSelected();
