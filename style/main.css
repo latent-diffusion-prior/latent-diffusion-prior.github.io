@@ -20,6 +20,11 @@ body {
   color: #333;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
+@media screen and (max-width: 767px) {
+  body {
+    margin: 1rem 5%;
+  }
+} 
 
 a:link {
   color: #444;
