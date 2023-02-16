@@ -1,16 +1,33 @@
+html {
+  background-color: #eee;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+
 html, body {
   overflow-x: hidden;
   max-width: 100%;
+  
 }
 
 body {
-  font-family: sans-serif;
-  font-size: 16px;
-  margin: 2rem;
+  /* font-family: sans-serif; */
+  font-family: -apple-system, BlinkMacSystemFont, helvetica, arial, sans-serif;
+  font-size: 15px;
+  margin: 1rem 10%;
   text-align: center;
+  background-color: white;
+  color: #333;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
 
-
+a:link {
+  color: #444;
+  /* font-weight: bold; */
+}
+.a:link:hover {
+  color: #777;
+}
 
 .btn-group button {
   padding: 0.5em 0.75em;
@@ -191,4 +208,8 @@ img {
 
 .prompt{
   overflow: visible;
+}
+
+.justify {
+  text-align: justify;
 }

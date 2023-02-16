@@ -15,9 +15,9 @@
   <body onload="selectSource('swan'); selectAppVideo('human1'); selectComparisonVideo('parrot'); change_text_promt('gan-teaser', 0)">
     <div class="container" id="container">
       <div class="page page1">
-        <h1 style="text-align: center">
+        <h1 style="text-align: center; font-size: 30px;"> </br>
           Text-driven Visual Synthesis with Latent Diffusion Prior</h1>
-        <div class="authors">
+        <div class="authors ">
           <div><a href="https://tinghliao.github.io/">Ting-Hsuan Liao</a></div>
           <div><a href="http://songweige.github.io/">Songwei Ge</a></div>
           <div><a href="https://twizwei.github.io/">Yiran Xu</a></div>
@@ -31,7 +31,11 @@
           <a class="btn-solid-lg" href="#"><i class="fa fa-file-pdf-o"></i> Paper (arXiv)</a>
           <a class="btn-solid-lg" href="#"><i class="fa fa-github"></i> Code (coming soon)</a>
         </div>
-
+        <div class="teaser">
+          <div style="display: flex;flex-direction: row;">
+            <p style="margin-left: 7%; margin-top: 5px; text-align: center; width: 50%">Input</p>
+            <p style="margin-right: 7%; margin-top: 5px; text-align: center; width: 50%;">Ours<mark style="background: none; color: white">.</mark></p>
+          </div>
           <div class="glide" id="gan-teaser">
             <div data-glide-el="track" class="glide__track">
               <ul class="glide__slides" id="gan-teaser-sub">
@@ -63,11 +67,9 @@
               <span class="glide__arrow glide__arrow--right" data-glide-dir=">"><img src="dist/arrow-right-circle-fill.svg"/></span>
             </div>
             <p class="start prompt" id="teaser-gan"><b>Text prompt:</b> A very beautiful anime girl, full body, long braided curly silver hair, sky blue eyes, full round face, short smile, casual clothes, ice snowy lake setting, cinematic lightning, medium shot, mid-shot, highly detailed, trending on Artstation, Unreal Engine 4k, cinematic wallpaper by Stanley Artgerm Lau, WLOP, Rossdraws, James Jean, Andrei Riabovitchev, Marc Simonetti, and Sakimichan.</p>
-            <p class="center shift-to-above">StyleGAN Adaptation.</p>
+            <p class="center" style="font-style: italic;">StyleGAN Adaptation.</p>
           </div>
-        </br></br>
-
-          <div class="teaser">
+          </br></br>
             <div style="display: flex;flex-direction: row;">
               <p id="comparison-caption" style="margin-left: 7%; margin-top: 5px; text-align: center; width: 50%">Jacobian NeRF</p>
               <p id="comparison-caption-our" style="margin-right: 7%; margin-top: 5px; text-align: center; width: 50%;">Jacobian NeRF + Ours<mark style="background: none; color: white">.</mark></p>
@@ -148,6 +150,47 @@
         </div>
       </div>
     </div>
+
+    <div class="container justify">
+      <h2>Abstract</h2>
+      <p style="text-align: justify;">There has been tremendous progress in large-scale text-to-image synthesis driven by 
+        diffusion models enabling versatile downstream applications such as 3D object synthesis from texts, image editing 
+        and generation. We present a generic approach using latent diffusion models as powerful image priors for various 
+        visual synthesis tasks. Existing methods that utilize such priors fail to use these models' full capabilities. 
+        To improve this, our core ideas are 
+        <ul>
+          <li>a feature matching Loss between features from different layers of the decoder 
+            to provide detailed guidance</li>
+          <li>a KL divergence loss to regularize the predicted latent features and stabilize the 
+            training.</li>
+        </ul>
+        We demonstrate the efficacy of our approach on three different applications, text-to-3D, StyleGAN adaptation, 
+        and layered image editing. Extensive results show our method compares favorably against baselines.</p>
+      <h2 style="margin-top: 40px;">Overview</h2>
+      <img src="figures/Overview.jpg" style="width: 80%;  margin-left: 10%;">
+      <p style="text-align: justify;">Our method guides the generation and editing given a text prompt. We obtain the latent code from a differentiable
+        renderer under different applications. 
+        This latent code 𝑣 is perturbed following the latent diffusion model’s scheduler at a random timestep 𝑡, such that 𝐹<small>𝑡</small>: z<small>𝑡</small> = 𝛼<small>𝑡</small>𝑣 + 𝜎<small>𝑡</small>𝜖. This perturbed 
+        latent code z<small>𝑡</small> is then passed to the UNet to generate the predicted noise 𝜖ˆ. We then use the predicted noise 𝜖ˆ to derive the latent score distillation 
+        gradient. To derive the feature matching gradient, we input the latent code 𝑣 and noised latent code 𝑣 + (𝜖ˆ − 𝜖) into the decoder 𝐺<small>𝜙<small>𝑑𝑒𝑐</small></small>(·). We
+        compute the difference between the multi-level features from three different layers of the decoder to compute the feature matching loss. 
+        Finally, both the latent score distillation and multi-level feature matching gradients are backpropagated to the differentiable renderer.
+      </p>
+      <h2 style="margin-top: 10px;">Method</h2>
+      <img src="figures/applcation_overview.png" style="width: 100%;">
+      <div style="display: flex;flex-direction: row;">
+        <p style="margin-left: 0%; margin-top: 3px; text-align: center; width: 23%">(a) Text-to-3D</p>
+        <p style="margin-left: 7%; margin-top: 3px; text-align: center; width: 30%">(b) StyleGAN adaptation</p>
+        <p style="margin-right: 7%; margin-top: 3px; text-align: center; width: 45%;">(c) Layered image editing<mark style="background: none; color: white">.</mark></p>
+      </div>
+      <p>To apply our proposed method,
+        we first obtain the latent code 𝑣 using the differentiable renderer in each application. As illustrated in the above figure, 
+        to obtain the image that produces 𝑣 with StableDiffusion encoder 𝐸<small>𝜙<small>𝑑𝑒𝑐</small></small> , 
+        in (a) Text-to-3D, we render from a NeRF model with a random camera viewpoint; (b) StyleGAN adaptation, 
+        we generate the image with a pretrained StyleGAN model; (c) Layered image editing application, we use the generator of Text2LIVE to synthesize the edited image, 
+        alpha map, and the alpha blending of the initial and edited images.</p>
+    </div>
+
 
     <div class="container">
       <h2>Comparison: StyleGAN Adaptation</h2>
@@ -367,32 +410,7 @@
         //   }
         // });
     </script>
-  <div class="container">
-    <h2>Abstract</h2>
-    <p style="text-align: justify;">There has been tremendous progress in large-scale text-to-image synthesis driven by 
-      diffusion models enabling versatile downstream applications such as 3D object synthesis from texts, image editing 
-      and generation. We present a generic approach using latent diffusion models as powerful image priors for various 
-      visual synthesis tasks. Existing methods that utilize such priors fail to use these models' full capabilities. 
-      To improve this, our core ideas are 
-      <ul>
-        <li>a feature matching Loss between features from different layers of the decoder 
-          to provide detailed guidance</li>
-        <li>a KL divergence loss to regularize the predicted latent features and stabilize the 
-          training.</li>
-      </ul>
-      We demonstrate the efficacy of our approach on three different applications, text-to-3D, StyleGAN adaptation, 
-      and layered image editing. Extensive results show our method compares favorably against baselines.</p>
-    <h2 style="margin-top: 40px;">Overview</h2>
-    <img src="figures/Overview.jpg" style="width: 100%">
-    <p style="text-align: justify;">Our method guides the generation and editing given a text prompt. We obtain the latent code from a differentiable
-      renderer under different applications, including the generator form Text2LIVE [Bar-Tal et al. 2022], StyleGAN-based generator, or a NeRF model. 
-      This latent code 𝑣 is perturbed following the latent diffusion model’s scheduler at arandom timestep 𝑡, such that 𝐹<small>𝑡</small>: z<small>𝑡</small> = 𝛼<small>𝑡</small>𝑣 + 𝜎<small>𝑡</small>𝜖. This perturbed 
-      latent code z<small>𝑡</small> is then passed to the UNet to generate the predicted noise 𝜖ˆ. We then use the predicted noise 𝜖ˆ to derive the latent score distillation 
-      gradient. To derive the feature matching gradient, we input the latent code 𝑣 and noised latent code 𝑣 + (𝜖ˆ − 𝜖) into the decoder 𝐺<small>𝜙<small>𝑑𝑒𝑐</small></small>(·). We
-      compute the difference between the multi-level features from three different layers of the decoder to compute the feature matching loss. 
-      Finally, both the latent score distillation and multi-level feature matching gradients are backpropagated to the differentiable renderer.
-    </p>
-  </div>
+
   <div class="container">
   <h2>BibTeX</h2>
   <pre><code>
@@ -405,7 +423,11 @@
   </code></pre>
   
   <h2>Acknowledgements</h2>
-  <p>We thank Jacobian NeRF, Latent NeRF, Text2Live and StyleGANFusion authors.</p>
+  <p>We thank <a href="https://pals.ttic.edu/p/score-jacobian-chaining">Jacobian-NeRF</a>, 
+    <a href="https://github.com/eladrich/latent-nerf">Latent-NeRF</a>,  
+    <a href="https://text2live.github.io">Text2Live</a> and 
+    <a href="https://styleganfusion.github.io">StyleGANFusion</a> authors.</p>
+</br></br>
   </div>
   </body>
 </html>

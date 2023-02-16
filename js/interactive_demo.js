@@ -14,9 +14,9 @@ let text_prompt = {
     ],
     'teaser-gan':[
         "A very beautiful anime girl, full body, long braided curly silver hair, sky blue eyes, full round face, short smile, casual clothes, ice snowy lake setting, cinematic lightning, medium shot, mid-shot, highly detailed, trending on Artstation, Unreal Engine 4k, cinematic wallpaper by Stanley Artgerm Lau, WLOP, Rossdraws, James Jean, Andrei Riabovitchev, Marc Simonetti, and Sakimichan",
-        "photo of a face [SEP] A realistic detailed portrait, single face, science fiction, artstation, volumetric lighting, octane render",
-        "photo of a fox",
-        "Beautiful cute cat, concept art trending on artstation, volumetric lighting, 8k, octane render, studio lighting",
+        "photo of a face [SEP] A realistic detailed portrait, single face, science fiction, artstation, volumetric lighting, octane render </br></br></br>",
+        "photo of a fox</br></br></br></br>",
+        "Beautiful cute cat, concept art trending on artstation, volumetric lighting, 8k, octane render, studio lighting</br></br></br>",
     ],
     'teaser-layer': [
         "'golden horse','long-mane horse','zebra'",
@@ -47,7 +47,7 @@ let text_prompt = {
 function change_text_promt(id, idx) {
     if (id == "gan-teaser"){
         var width = document.getElementById('container').clientWidth;
-        document.getElementById('teaser-gan').style.height = '' + (width / 768 * 432/5) + 'px';
+        // document.getElementById('teaser-gan').style.height = '' + (width / 768 * 432/3) + 'px';
         document.getElementById('teaser-gan').innerHTML = '<b>Text prompt:</b> '+text_prompt['teaser-gan'][idx];
     } else{
         document.getElementById(id).innerHTML = '<b>Text prompt:</b> '+text_prompt[id][idx];
@@ -118,7 +118,7 @@ function loadImage(is_end) {
 
 function selectSource(image) {
     selected_source = image;
-    selected_method = method_options[3];
+    // selected_method = method_options[3];
     showSelected();
     update_image_source();
 }
