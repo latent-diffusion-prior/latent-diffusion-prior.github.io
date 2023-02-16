@@ -10,7 +10,7 @@ let text_prompt = {
         'A high quality photo of a jug made of blue and white porcelain',
         'A kio fish.',
         'A high quality photo of a bouguet of wilted red roses',
-        ''
+        'A high quality photo of a ripe strawberry'
     ],
     'teaser-gan':[
         "A very beautiful anime girl, full body, long braided curly silver hair, sky blue eyes, full round face, short smile, casual clothes, ice snowy lake setting, cinematic lightning, medium shot, mid-shot, highly detailed, trending on Artstation, Unreal Engine 4k, cinematic wallpaper by Stanley Artgerm Lau, WLOP, Rossdraws, James Jean, Andrei Riabovitchev, Marc Simonetti, and Sakimichan",
@@ -58,7 +58,7 @@ function change_text_promt(id, idx) {
 
 function changecaption(mathod) {
     document.getElementById('comparison-caption').innerHTML = method_names[mathod];
-    document.getElementById('comparison-caption-our').innerHTML = method_names[mathod+1];
+    document.getElementById('comparison-caption-our').innerHTML = method_names[mathod]+" + Ours";
 }
 
 /* Application 3 */
@@ -79,9 +79,10 @@ let method_options = [
 
 let method_names = [
     'Jacobian NeRF',
-    'Jacobian NeRF + Ours',
     'Latent NeRF',
-    'Latent NeRF + Ours'
+    'Jacobian NeRF',
+    'Latent NeRF',
+    'Latent NeRF',
 ];
 
 var selected_source = 'swan';
