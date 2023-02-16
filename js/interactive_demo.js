@@ -6,8 +6,12 @@
 //     document.getElementById('layer-teaser').style.height = h*1.2;
 // }
 let text_prompt = {
-    'teaser_jog' : 'A high quality photo of a jug made of blue and white porcelain',
-    'teaser_fish': 'A kio fish.',
+    'teaser-text':[ 
+        'A high quality photo of a jug made of blue and white porcelain',
+        'A kio fish.',
+        'A high quality photo of a bouguet of wilted red roses',
+        ''
+    ],
     'teaser-gan':[
         "A very beautiful anime girl, full body, long braided curly silver hair, sky blue eyes, full round face, short smile, casual clothes, ice snowy lake setting, cinematic lightning, medium shot, mid-shot, highly detailed, trending on Artstation, Unreal Engine 4k, cinematic wallpaper by Stanley Artgerm Lau, WLOP, Rossdraws, James Jean, Andrei Riabovitchev, Marc Simonetti, and Sakimichan",
         "photo of a face [SEP] A realistic detailed portrait, single face, science fiction, artstation, volumetric lighting, octane render",
@@ -21,16 +25,22 @@ let text_prompt = {
         "tiger",
         "white swan",
     ],
-
-    "human1": "photo of a face [SEP] A realistic detailed portrait, single face, science fiction, artstation, volumetric lighting, octane render",
-    "human2": "3d human face, closeup cute and adorable, cute big circular reflective eyes, Pixar render, unreal engine cinematic smooth, intricate detail, cinematic",
-    "cat1": "3d cute cat, closeup cute and adorable, cute big circular reflective eyes, long fuzzy fur, Pixar render, unreal engine cinematic smooth, intricate detail, cinematic",
-    "cat2": "photo of a fox",
-    "cat3": "photo of a lion",
-    // "swan": "white swan",
-    // "horse": "golden horse",
-    // "cat": "tiger",
-    // "burger": "",
+    'com-gan':[
+        "photo of a face [SEP] A realistic detailed portrait, single face, science fiction, artstation, volumetric lighting, octane render",
+        "3d human face, closeup cute and adorable, cute big circular reflective eyes, Pixar render, unreal engine cinematic smooth, intricate detail, cinematic",
+        "3d cute cat, closeup cute and adorable, cute big circular reflective eyes, long fuzzy fur, Pixar render, unreal engine cinematic smooth, intricate detail, cinematic",
+        "photo of a fox",
+        "photo of a lion",
+    ],
+    'com-text':[
+        'A stuffed animal that is frowning is on a skateboard.',
+        "A high quality photo of a large blue bird, highly detailed",
+        'An inflatable raft that has its top open and a person sitting in it',
+        "A high quality photo of an ice cream sundae.",
+        "A red fire hydrant spraying water",
+        "a lego man"
+        
+    ]
 };
 
 function change_text_promt(id, idx) {
@@ -67,10 +77,10 @@ let method_options = [
 ];
 
 let method_names = [
-    'Latent NeRF',
-    'Latent NeRF + Ours',
     'Jacobian NeRF',
-    'Jacobian NeRF + Ours'
+    'Jacobian NeRF + Ours',
+    'Latent NeRF',
+    'Latent NeRF + Ours'
 ];
 
 var selected_source = 'swan';
@@ -155,7 +165,7 @@ function showSelected() {
     for(var i = 0; i < comp_video_btns.length; i++) {
         set_inactive(comp_video_btns[i]);
     }
-    selected_index = ['duck', 'duck', 'duck', 'duck'].indexOf(selected_compare_video);
+    selected_index = ['skate', 'bird', 'boat', 'ice', 'lego', 'water'].indexOf(selected_compare_video);
     set_active(comp_video_btns[selected_index]);
 
 
@@ -181,7 +191,7 @@ function selectComparisonVideo(video) {
 
 
 function update_comparison_source() {
-    comp1_path = 'videos/text3D/' + selected_compare_video + '.mp4';
+    comp1_path = 'videos/text3D/' + selected_compare_video + '_base.mp4';
     // need to update
     comp2_path = 'videos/text3D/' + selected_compare_video + '.mp4';
 

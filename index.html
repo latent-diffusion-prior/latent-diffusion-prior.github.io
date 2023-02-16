@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="style/glide.theme.min.css">
     <link rel="stylesheet" href="style/glide-custom.css">
   </head>
-  <body onload="selectSource('swan'); selectAppVideo('human1'); selectComparisonVideo('duck'); change_text_promt('gan-teaser', 0)">
+  <body onload="selectSource('swan'); selectAppVideo('human1'); selectComparisonVideo('skate'); change_text_promt('gan-teaser', 0)">
     <div class="container" id="container">
       <div class="page page1">
         <h1 style="text-align: center">
@@ -41,17 +41,17 @@
                   </video>
                 </li>
                 <li class="glide__slide">
-                  <video controls muted loop class="teaser-video-gan-1">
+                  <video controls muted loop autoplay class="teaser-video-gan-1">
                     <source src="videos/adaptation/teaser-human2.mp4" type="video/mp4"/>
                   </video>
                 </li>
                 <li class="glide__slide">
-                  <video controls muted loop class="teaser-video-gan-2">
+                  <video controls muted loop autoplay class="teaser-video-gan-2">
                     <source src="videos/adaptation/teaser-cat1.mp4" type="video/mp4"/>
                   </video>
                 </li>
                 <li class="glide__slide">
-                  <video controls muted loop class="teaser-video-gan-3">
+                  <video controls muted loop autoplay class="teaser-video-gan-3">
                     <source src="videos/adaptation/teaser-cat2.mp4" type="video/mp4"/>
                   </video>
                 </li>
@@ -65,11 +65,12 @@
             <p class="start prompt" id="teaser-gan"><b>Text prompt:</b> A very beautiful anime girl, full body, long braided curly silver hair, sky blue eyes, full round face, short smile, casual clothes, ice snowy lake setting, cinematic lightning, medium shot, mid-shot, highly detailed, trending on Artstation, Unreal Engine 4k, cinematic wallpaper by Stanley Artgerm Lau, WLOP, Rossdraws, James Jean, Andrei Riabovitchev, Marc Simonetti, and Sakimichan.</p>
             <p class="center shift-to-above">StyleGAN Adaptation.</p>
           </div>
+        </br></br>
 
           <div class="teaser">
             <div style="display: flex;flex-direction: row;">
-              <p id="comparison-caption" style="margin-left: 7%; margin-top: 5px; text-align: center; width: 50%">Latent NeRF</p>
-              <p id="comparison-caption-our" style="margin-right: 7%; margin-top: 5px; text-align: center; width: 50%;">Latent NeRF + Ours<mark style="background: none; color: white">.</mark></p>
+              <p id="comparison-caption" style="margin-left: 7%; margin-top: 5px; text-align: center; width: 50%">Jacobian NeRF</p>
+              <p id="comparison-caption-our" style="margin-right: 7%; margin-top: 5px; text-align: center; width: 50%;">Jacobian NeRF + Ours<mark style="background: none; color: white">.</mark></p>
             </div>
             <div class="glide" id="text3d-teaser">
               <div data-glide-el="track" class="glide__track">
@@ -80,12 +81,17 @@
                     </video>
                   </li>
                   <li class="glide__slide">
-                    <video controls muted loop class="teaser-video-1">
+                    <video controls muted loop autoplay class="teaser-video-1">
                       <source src="videos/fish.mp4" type="video/mp4"/>
                     </video>
                   </li>
                   <li class="glide__slide">
-                    <video controls muted loop class="teaser-video-2">
+                    <video controls muted loop autoplay class="teaser-video-2">
+                      <source src="videos/rose.mp4" type="video/mp4"/>
+                    </video>
+                  </li>
+                  <li class="glide__slide">
+                    <video controls muted loop autoplay class="teaser-video-3">
                       <source src="videos/jog.mp4" type="video/mp4"/>
                     </video>
                   </li>
@@ -99,8 +105,7 @@
             </div>
             <p class="start prompt" id="teaser-text"><b>Text prompt:</b> A high quality photo of a jug made of blue and white porcelain.</p>
             <p class="center shift-to-above">Text-to-3D compare with <a href="https://pals.ttic.edu/p/score-jacobian-chaining">Jacobian-NeRF</a>, and <a href="https://github.com/eladrich/latent-nerf">Latent-NeRF</a>.</p>
-  
-
+          </br></br>
 
           <div class="glide" id="layer-teaser">
             <div data-glide-el="track" class="glide__track">
@@ -111,22 +116,22 @@
                   </video>
                 </li>
                 <li class="glide__slide">
-                  <video controls muted loop class="teaser-video-layer-1">
+                  <video controls muted loop autoplay class="teaser-video-layer-1">
                     <source src="videos/layer/teaser_bear.mp4" type="video/mp4"/>
                   </video>
                 </li>
                 <li class="glide__slide">
-                  <video controls muted loop class="teaser-video-layer-2">
+                  <video controls muted loop autoplay class="teaser-video-layer-2">
                     <source src="videos/layer/teaser_bread.mp4" type="video/mp4"/>
                   </video>
                 </li>
                 <li class="glide__slide">
-                  <video controls muted loop class="teaser-video-layer-3">
+                  <video controls muted loop autoplay class="teaser-video-layer-3">
                     <source src="videos/layer/teaser_cat.mp4" type="video/mp4"/>
                   </video>
                 </li>
                 <li class="glide__slide">
-                  <video controls muted loop class="teaser-video-layer-4">
+                  <video controls muted loop autoplay class="teaser-video-layer-4">
                     <source src="videos/layer/teaser_swan.mp4" type="video/mp4"/>
                   </video>
                 </li>
@@ -165,38 +170,41 @@
       <p class="start prompt" id="com-gan"><b>Text prompt:</b> Photo of a face [SEP] A realistic detailed portrait, single face, science fiction, artstation, volumetric lighting, octane render.</p>
       <p><b>Example</b></p>
       <div class="btn-group btn-group-app">
-        <button class='btn-app-video' onclick="selectAppVideo('human1')">Human Face 1</button>
-        <button class='btn-app-video' onclick="selectAppVideo('human2')">Human Face 2</button>
-        <button class='btn-app-video'  onclick="selectAppVideo('cat1')">Cat 1</button>
-        <button class='btn-app-video'  onclick="selectAppVideo('cat2')">Cat 2</button>
-        <button class='btn-app-video'  onclick="selectAppVideo('cat3')">Cat 3</button>
+        <button class='btn-app-video' onclick="selectAppVideo('human1'), change_text_promt('com-gan', 0)">Human Face 1</button>
+        <button class='btn-app-video' onclick="selectAppVideo('human2'), change_text_promt('com-gan', 1)">Human Face 2</button>
+        <button class='btn-app-video'  onclick="selectAppVideo('cat1'), change_text_promt('com-gan', 2)">Cat 1</button>
+        <button class='btn-app-video'  onclick="selectAppVideo('cat2'), change_text_promt('com-gan', 3)">Cat 2</button>
+        <button class='btn-app-video'  onclick="selectAppVideo('cat3'), change_text_promt('com-gan', 4)">Cat 3</button>
         <!-- &#8594 -->
       </div>
       <br/>
       <img src="figures/compare.png" style="display: block; width: 90%; margin: 0 auto;"/>
-      <p class="center shift-to-above">Compare our method with StyleGAN-NADA [Gal et al. 2022] and StyleGANFusion [Song et al. 2022] on FID (left, the lower the better) and LPIPS/CLIP (right, the higher the better).</p>
+      <p class="center shift-to-above">Compare our method with StyleGAN-NADA [Gal et al. 2022] and StyleGANFusion [Song et al. 2022] on FID (left, the lower the better) and LPIPS/CLIP (right, the higher the better) score.</p>
     </div>
 
     <div class="container" id="comparison-video">
       <h2>Comparison: Text-to-3D</h2>
         <div style="display: block;" id="comparison-video-div">
           <video id="comparison-player1"  style="width: 49%" autoplay muted onended="">
-            <source id="comparison-src1" src="videos/text3D/duck.mp4">
+            <source id="comparison-src1" src="videos/text3D/skate.mp4">
           </video>
           <video id="comparison-player2"  style="width: 49%" autoplay muted onended="loadComparison()">
-            <source id="comparison-src2" src="videos/text3D/duck.mp4">
+            <source id="comparison-src2" src="videos/text3D/skate.mp4">
           </video>
         </div>
         <div style="display: flex;flex-direction: row;">
           <p id="comparison-caption" style="margin-top: 5px; text-align: center; width: 50%">Jacobian NeRF <br> [Wang et al. 2022]</p>
           <p style="margin-top: 5px; text-align: center; width: 50%;">Ours<br/><mark style="background: none; color: white">.</mark></p>
         </div>
+        <p class="start prompt" id="com-text"><b>Text prompt:</b> duck</p>
         <p><b>Example</b></p>
         <div class="btn-group btn-group-comp-video">
-          <button class='btn-comp-video'  onclick="selectComparisonVideo('duck')">duck</button>
-          <!-- <button class='btn-comp-video'  onclick="selectComparisonVideo('duck')">duck</button>
-          <button class='btn-comp-video' onclick="selectComparisonVideo('duck')">duck</button>
-          <button class='btn-comp-video'  onclick="selectComparisonVideo('duck')">duck</button> -->
+          <button class='btn-comp-video'  onclick="selectComparisonVideo('skate')">skate</button>
+          <button class='btn-comp-video'  onclick="selectComparisonVideo('bird')">bird</button>
+          <button class='btn-comp-video' onclick="selectComparisonVideo('boat')">boat</button>
+          <button class='btn-comp-video'  onclick="selectComparisonVideo('ice')">ice</button>
+          <button class='btn-comp-video'  onclick="selectComparisonVideo('lego')">lego</button>
+          <button class='btn-comp-video'  onclick="selectComparisonVideo('water')">fire hydrant</button>
         </div>
         <br/><br/>
       </div>
@@ -249,33 +257,34 @@
           autoplay: 5500,
           hoverpause: true
         }).mount();
-        let video_num = 3;
-        glide.on('run', () => {
-          var index = glide.index;
-          for(var i = 0; i < video_num; i++) {
-            if(i == index) {
-              var active_videos = document.getElementsByClassName('teaser-video-' + i);
-              for(var j = 0; j < active_videos.length; j++) {
-                var video_ele = active_videos[j];
-                var isPlaying = video_ele.currentTime > 0 && !video_ele.paused && !video_ele.ended 
-                  && video_ele.readyState > video_ele.HAVE_CURRENT_DATA;
+        // let video_num = 4;
+        // glide.on('run', () => {
+        //   var index = glide.index;
+        //   for(var i = 0; i < video_num; i++) {
+        //     if(i == index) {
+        //       var active_videos = document.getElementsByClassName('teaser-video-' + i);
+        //       for(var j = 0; j < active_videos.length; j++) {
+        //         var video_ele = active_videos[j];
+        //         var isPlaying = video_ele.currentTime > 0 && !video_ele.paused && !video_ele.ended 
+        //           && video_ele.readyState > video_ele.HAVE_CURRENT_DATA;
 
-                if (!isPlaying) {
-                  video_ele.play();
-                  changecaption(j%2*2);
-                }
-                video_ele.load();
-                video_ele.currentTime = 0;
-                video_ele.play();
-              }
-            } else {
-              var inactive_videos = document.getElementsByClassName('teaser-video-' + i);
-              for(var j = 0; j < inactive_videos.length; j++) {
-                inactive_videos[j].pause(); 
-              }
-            }
-          }
-        });
+        //         if (!isPlaying) {
+        //           video_ele.play();
+        //           changecaption(index%2*2);
+        //           change_text_promt('teaser-text', i)
+        //         }
+        //         video_ele.load();
+        //         video_ele.currentTime = 0;
+        //         video_ele.play();
+        //       }
+        //     } else {
+        //       var inactive_videos = document.getElementsByClassName('teaser-video-' + i);
+        //       for(var j = 0; j < inactive_videos.length; j++) {
+        //         inactive_videos[j].pause(); 
+        //       }
+        //     }
+        //   }
+        // });
         glide_layer = new Glide('#layer-teaser', {
           type: "carousel",
           perView: 1.27,
@@ -283,33 +292,34 @@
           autoplay: 5500,
           hoverpause: true
         }).mount();
-        let video_num_layer = 5;
-        glide_layer.on('run', () => {
-          var index = glide_layer.index;
-          for(var i = 0; i < video_num_layer; i++) {
-            if(i == index) {
-              var active_videos_layer = document.getElementsByClassName('teaser-video-layer-' + i);
-              for(var j = 0; j < active_videos_layer.length; j++) {
-                var video_ele = active_videos_layer[j];
-                var isPlaying = video_ele.currentTime > 0 && !video_ele.paused && !video_ele.ended 
-                  && video_ele.readyState > video_ele.HAVE_CURRENT_DATA;
+        // let video_num_layer = 5;
+        // glide_layer.on('run', () => {
+        //   var index = glide_layer.index;
+        //   for(var i = 0; i < video_num_layer; i++) {
+        //     if(i == index) {
+        //       var active_videos_layer = document.getElementsByClassName('teaser-video-layer-' + i);
+        //       // console.log(active_videos_layer.length);
+        //       for(var j = 0; j < active_videos_layer.length; j++) {
+        //         var video_ele = active_videos_layer[j];
+        //         var isPlaying = video_ele.currentTime > 0 && !video_ele.paused && !video_ele.ended 
+        //           && video_ele.readyState > video_ele.HAVE_CURRENT_DATA;
 
-                if (!isPlaying) {
-                  video_ele.play();
-                  change_text_promt('teaser-layer', i)
-                }
-                video_ele.load();
-                video_ele.currentTime = 0;
-                video_ele.play();
-              }
-            } else {
-              var inactive_videos_layer = document.getElementsByClassName('teaser-video-layer-' + i);
-              for(var j = 0; j < inactive_videos_layer.length; j++) {
-                inactive_videos_layer[j].pause(); 
-              }
-            }
-          }
-        });
+        //         if (!isPlaying) {
+        //           video_ele.play();
+        //           change_text_promt('teaser-layer', i)
+        //         }
+        //         video_ele.load();
+        //         video_ele.currentTime = 0;
+        //         video_ele.play();
+        //       }
+        //     } else {
+        //       var inactive_videos_layer = document.getElementsByClassName('teaser-video-layer-' + i);
+        //       for(var j = 0; j < inactive_videos_layer.length; j++) {
+        //         inactive_videos_layer[j].pause(); 
+        //       }
+        //     }
+        //   }
+        // });
         glide_gan = new Glide('#gan-teaser', {
           type: "carousel",
           perView: 1.27,
@@ -317,33 +327,33 @@
           autoplay: 5500,
           hoverpause: true
         }).mount();
-        let video_num_gan = 4;
-        glide_gan.on('run', () => {
-          var index = glide_gan.index;
-          for(var i = 0; i < video_num_gan; i++) {
-            if(i == index) {
-              var active_videos_gan = document.getElementsByClassName('teaser-video-gan-' + i);
-              for(var j = 0; j < active_videos_gan.length; j++) {
-                var video_ele = active_videos_gan[j];
-                var isPlaying = video_ele.currentTime > 0 && !video_ele.paused && !video_ele.ended 
-                  && video_ele.readyState > video_ele.HAVE_CURRENT_DATA;
+        // let video_num_gan = 4;
+        // glide_gan.on('run', () => {
+        //   var index = glide_gan.index;
+        //   for(var i = 0; i < video_num_gan; i++) {
+        //     if(i == index) {
+        //       var active_videos_gan = document.getElementsByClassName('teaser-video-gan-' + i);
+        //       for(var j = 0; j < active_videos_gan.length; j++) {
+        //         var video_ele = active_videos_gan[j];
+        //         var isPlaying = video_ele.currentTime > 0 && !video_ele.paused && !video_ele.ended 
+        //           && video_ele.readyState > video_ele.HAVE_CURRENT_DATA;
 
-                if (!isPlaying) {
-                  video_ele.play();
-                  change_text_promt('gan-teaser', i);
-                }
-                video_ele.load();
-                video_ele.currentTime = 0;
-                video_ele.play();
-              }
-            } else {
-              var inactive_videos_gan = document.getElementsByClassName('teaser-video-gan-' + i);
-              for(var j = 0; j < inactive_videos_gan.length; j++) {
-                inactive_videos_gan[j].pause(); 
-              }
-            }
-          }
-        });
+        //         if (!isPlaying) {
+        //           video_ele.play();
+        //           change_text_promt('gan-teaser', i);
+        //         }
+        //         video_ele.load();
+        //         video_ele.currentTime = 0;
+        //         video_ele.play();
+        //       }
+        //     } else {
+        //       var inactive_videos_gan = document.getElementsByClassName('teaser-video-gan-' + i);
+        //       for(var j = 0; j < inactive_videos_gan.length; j++) {
+        //         inactive_videos_gan[j].pause(); 
+        //       }
+        //     }
+        //   }
+        // });
     </script>
   <div class="container">
     <h2>Abstract</h2>
