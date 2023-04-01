@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="style/glide.theme.min.css">
     <link rel="stylesheet" href="style/glide-custom.css">
   </head>
-  <body onload="selectSource('swan'); selectAppVideo('human1'); selectComparisonVideo('parrot'); change_text_promt('gan-teaser', 0)">
+  <body onload="selectSource('swan'); selectAppVideo('badger'); selectComparisonVideo('parrot'); change_text_promt('gan-teaser', 0)">
     <div class="container" id="container">
       <div class="page page1">
         <h1 style="text-align: center; font-size: 30px;"> </br>
@@ -199,10 +199,19 @@
         demonstrate the effectiveness of our method, we compare our approach with two other baselines, StyleGANFusion and StyleGAN-NADA. 
       </p> -->
       <!-- <img src="figures/cat.png" style="width: 100%"> -->
-      <div style="display: block;" id="application-div">
-        <video id="app-player" autoplay muted onended="loadApp(true)">
-          <source id="app-src" src="">
-        </video>
+      <div class="row">
+        <div class="col4">
+          <img id="img1" src="figures/GAN/badger-original.png" style="width:95%">
+        </div>
+        <div class="col4">
+          <img id="img2" src="figures/GAN/badger-nada.png"  style="width:95%">
+        </div>
+        <div class="col4">
+          <img id="img3" src="figures/GAN/badger-stylediffuse.png" style="width:95%">
+        </div>
+        <div class="col4">
+        <img id="img4" src="figures/GAN/badger-ours.png" style="width:95%">
+        </div>
       </div>
       <div style="display: flex;flex-direction: row;">
         <p style="margin-top: -3px; text-align: center; width: 25%">Source</p>
@@ -212,17 +221,29 @@
       </div>
       <p class="start prompt" id="com-gan"><b>Text prompt:</b> Photo of a face [SEP] A realistic detailed portrait, single face, science fiction, artstation, volumetric lighting, octane render.</p>
       <p><b>Example</b></p>
-      <div class="btn-group btn-group-app">
-        <button class='btn-app-video' onclick="selectAppVideo('human1'), change_text_promt('com-gan', 0)">Human Face 1</button>
-        <button class='btn-app-video' onclick="selectAppVideo('human2'), change_text_promt('com-gan', 1)">Human Face 2</button>
-        <button class='btn-app-video'  onclick="selectAppVideo('cat1'), change_text_promt('com-gan', 2)">Cat 1</button>
-        <button class='btn-app-video'  onclick="selectAppVideo('cat2'), change_text_promt('com-gan', 3)">Cat 2</button>
-        <button class='btn-app-video'  onclick="selectAppVideo('cat3'), change_text_promt('com-gan', 4)">Cat 3</button>
-        <!-- &#8594 -->
-      </div>
-      <br/>
+      <div class="btn-group">
+        <button class='btn-app-video' style="width:23%" onclick="selectAppVideo('badger')">Badger</button>
+        <button class='btn-app-video' style="width:23%" onclick="selectAppVideo('bear')">Bear</button>
+        <button class='btn-app-video' style="width:23%" onclick="selectAppVideo('fox')">Fox</button>
+        <button class='btn-app-video' style="width:23%" onclick="selectAppVideo('hamster')">Hamster</button>
+      </div> 
+      <div class="btn-group">
+        <button class='btn-app-video' style="width:23%" onclick="selectAppVideo('id9')">Prompt1*</button>
+        <button class='btn-app-video' style="width:23%" onclick="selectAppVideo('id10')">Prompt2**</button>
+        <button class='btn-app-video' style="width:23%" onclick="selectAppVideo('lion')">Lion</button>
+        <button class='btn-app-video' style="width:23%" onclick="selectAppVideo('otter')">Otter</button>
+      </div> 
+      <div class="btn-group">
+        <button class='btn-app-video' style="width:23%" onclick="selectAppVideo('pig')">Pig</button>
+        <button class='btn-app-video' style="width:23%" onclick="selectAppVideo('tiger')">Tiger</button>
+      </div>       
+      </br></br>
+      <!-- <br/> -->
       <img src="figures/compare.png" style="display: block; width: 90%; margin: 0 auto;"/>
       <p class="center shift-to-above">Compare our method with StyleGAN-NADA [Gal et al. 2022] and StyleGANFusion [Song et al. 2022] on FID (left, the lower the better) and LPIPS/CLIP (right, the higher the better) score.</p>
+      <small>*Prompt1: "3d cute cat, closeup cute and adorable, cute big circular reflective eyes, long fuzzy fur, Pixar render, unreal engine cinematic smooth, intricate detail, cinematic"
+      </br> **Ptompt2: "A beautiful portrait of a cute cat. character design by cory loftis, fenghua zhong, ryohei hase, ismail inceoglu and ruan jia. artstation, volumetric light, detailed, photorealistic, fantasy, rendered in octane"</small>
+      </br></br>
     </div>
 
     <div class="container" id="comparison-video">

@@ -13,10 +13,10 @@ let text_prompt = {
         'A high quality photo of a ripe strawberry'
     ],
     'teaser-gan':[
-        "A very beautiful anime girl, full body, long braided curly silver hair, sky blue eyes, full round face, short smile, casual clothes, ice snowy lake setting, cinematic lightning, medium shot, mid-shot, highly detailed, trending on Artstation, Unreal Engine 4k, cinematic wallpaper by Stanley Artgerm Lau, WLOP, Rossdraws, James Jean, Andrei Riabovitchev, Marc Simonetti, and Sakimichan",
-        "photo of a face [SEP] A realistic detailed portrait, single face, science fiction, artstation, volumetric lighting, octane render </br></br></br>",
+        "Charcoal pencil sketch of human face, lower third, high contrast, black and white</br></br></br>",
+        "Very beautiful portrait of an extremely cute and adorable face, smooth, perfect face, fantasy, character design by mark ryden and pixar and hayao miyazaki, sharp focus, concept art, harvest fall vibrancy, intricate detail, cinematic lighting, hyperrealistic, 3 5 mm, diorama macro photography, 8 k, 4 k",
         "photo of a fox</br></br></br></br>",
-        "Beautiful cute cat, concept art trending on artstation, volumetric lighting, 8k, octane render, studio lighting</br></br></br>",
+        "photo of a otter</br></br></br></br>",
     ],
     'teaser-layer': [
         "'golden horse','long-mane horse','zebra'",
@@ -172,11 +172,13 @@ function showSelected() {
 
 
     var app_btns = document.getElementsByClassName('btn-app-video');
-    for(var i = 0; i < app_btns.length; i++) {
-        set_inactive(app_btns[i]);
+    if(app_btns.length > 0){
+        for(var i = 0; i < app_btns.length; i++) {
+            set_inactive(app_btns[i]);
+        }
+        selected_index = ['badger', 'bear', 'fox', 'hamster', 'id9', 'id10', 'lion', 'otter', 'pig', 'tiger'].indexOf(selected_app_video);
+        set_active(app_btns[selected_index]);
     }
-    selected_index = ['human1', 'human2', 'cat1', 'cat2', 'cat3'].indexOf(selected_app_video);
-    set_active(app_btns[selected_index]);
 }
 
 /* Application 1 */
@@ -237,7 +239,7 @@ function loadComparison() {
 
 /* Application 3 */
 
-var selected_app_video = 'human1';
+var selected_app_video = 'bear';
 var app_path = '';
 function selectAppVideo(video) {
     selected_app_video = video;
@@ -246,30 +248,18 @@ function selectAppVideo(video) {
 }
 
 function update_app_source() {
-    app_path = 'videos/adaptation/' + selected_app_video + '.mp4';
+    app_path = 'figures/GAN/' + selected_app_video;
     loadApp();
 }
 
 var prev_app_path = "none";
 function loadApp(is_end) {
-    var video = document.getElementById('app-player');
-    
-    var video_src = document.getElementById('app-src');
-
-    var width =document.getElementById('container').clientWidth;
-    var height = width / 768 * 232;
-
-    video.style.width = '' + width + 'px';
-    video.style.height = '' + height + 'px';
-
-
-    video.pause();
-    if(prev_app_path != app_path) {
-        video_src.setAttribute('src', app_path);
-        video.load();
+    var images = []
+    for(var i = 0; i < 4; i++) {
+        images[i] = document.getElementById(`img${i+1}`);
     }
-    prev_app_path = app_path;
-    video.currentTime = 0;
-    video.playbackRate = 1.8;
-    video.play();
+    images[0].src = app_path+'-original.png'
+    images[1].src = app_path+'-nada.png'
+    images[2].src = app_path+'-stylediffuse.png'
+    images[3].src = app_path+'-ours.png'
 }
